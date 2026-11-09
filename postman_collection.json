@@ -1,0 +1,39 @@
+{
+  "info": {
+    "name": "API Kegiatan Desa Sukamaju",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [{ "key": "baseUrl", "value": "http://localhost:3000" }],
+  "item": [
+    {
+      "name": "POST - Buat kegiatan",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"judul\": \"Kerja Bakti Bersih Masjid\",\n  \"deskripsi\": \"Membersihkan area masjid desa\",\n  \"tanggal_kegiatan\": \"2026-11-22\",\n  \"jam_mulai\": \"07:00\",\n  \"jam_selesai\": \"10:00\",\n  \"status\": \"terjadwal\",\n  \"kategori_id\": 2,\n  \"lokasi_id\": 3\n}" },
+        "url": { "raw": "{{baseUrl}}/kegiatan", "host": ["{{baseUrl}}"], "path": ["kegiatan"] }
+      }
+    },
+    {
+      "name": "GET - Semua kegiatan",
+      "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/kegiatan", "host": ["{{baseUrl}}"], "path": ["kegiatan"] } }
+    },
+    {
+      "name": "GET - Kegiatan by ID",
+      "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/kegiatan/1", "host": ["{{baseUrl}}"], "path": ["kegiatan", "1"] } }
+    },
+    {
+      "name": "PUT - Update kegiatan",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"judul\": \"Kerja Bakti Bersih Masjid (Diperbarui)\",\n  \"deskripsi\": \"Membersihkan masjid dan halaman\",\n  \"tanggal_kegiatan\": \"2026-11-23\",\n  \"jam_mulai\": \"06:30\",\n  \"jam_selesai\": \"10:00\",\n  \"status\": \"terjadwal\",\n  \"kategori_id\": 2,\n  \"lokasi_id\": 3\n}" },
+        "url": { "raw": "{{baseUrl}}/kegiatan/4", "host": ["{{baseUrl}}"], "path": ["kegiatan", "4"] }
+      }
+    },
+    {
+      "name": "DELETE - Hapus kegiatan",
+      "request": { "method": "DELETE", "url": { "raw": "{{baseUrl}}/kegiatan/4", "host": ["{{baseUrl}}"], "path": ["kegiatan", "4"] } }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{baseUrl}}/kegiatan/4"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "judul": "Kerja Bakti Bersih Masjid (Diperbarui)",
+      "deskripsi": "Membersihkan masjid dan halaman",
+      "tanggal_kegiatan": "2026-11-23",
+      "jam_mulai": "06:30",
+      "jam_selesai": "10:00",
+      "status": "terjadwal",
+      "kategori_id": 2,
+      "lokasi_id": 3
+    }
+order: 4000

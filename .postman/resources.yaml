@@ -1,0 +1,11 @@
+# Use this workspace to collaborate
+workspace:
+  id: f9a344b5-3ac7-4dcd-8c89-e584414dcdc8
+
+localResources:
+  collections:
+    - ../postman_collection.json
+
+cloudResources:
+  collections:
+    ../postman/collections/API Kegiatan Desa Sukamaju: 6f79928e-3598-418f-851a-14c30e51c951

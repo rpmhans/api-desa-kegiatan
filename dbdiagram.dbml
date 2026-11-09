@@ -1,0 +1,73 @@
+// Paste kode ini di https://dbdiagram.io (atau import SQL: Import > PostgreSQL)
+Table dusun {
+  id serial [pk]
+  nama_dusun varchar(100) [not null, unique]
+  kepala_dusun varchar(100)
+}
+
+Table warga {
+  id serial [pk]
+  nik char(16) [not null, unique]
+  nama_lengkap varchar(150) [not null]
+  jenis_kelamin char(1) [not null, note: 'L / P']
+  tanggal_lahir date
+  dusun_id int [not null]
+  created_at timestamp [not null, default: `now()`]
+}
+
+Table profil_warga {
+  id serial [pk]
+  warga_id int [not null, unique]
+  no_hp varchar(20)
+  alamat text
+  pekerjaan varchar(100)
+}
+
+Table kategori_kegiatan {
+  id serial [pk]
+  nama_kategori varchar(100) [not null, unique]
+  deskripsi text
+}
+
+Table lokasi {
+  id serial [pk]
+  nama_lokasi varchar(150) [not null]
+  alamat text
+  kapasitas int
+}
+
+Table kegiatan {
+  id serial [pk]
+  judul varchar(200) [not null]
+  deskripsi text
+  tanggal_kegiatan date [not null]
+  jam_mulai time [not null]
+  jam_selesai time
+  status varchar(20) [not null, default: 'terjadwal']
+  kategori_id int [not null]
+  lokasi_id int [not null]
+  created_at timestamp [not null, default: `now()`]
+}
+
+Table peserta_kegiatan {
+  warga_id int [not null]
+  kegiatan_id int [not null]
+  status_kehadiran varchar(20) [not null, default: 'belum_konfirmasi']
+  created_at timestamp [not null, default: `now()`]
+
+  indexes {
+    (warga_id, kegiatan_id) [pk]
+  }
+}
+
+// One to many
+Ref: warga.dusun_id > dusun.id
+Ref: kegiatan.kategori_id > kategori_kegiatan.id
+Ref: kegiatan.lokasi_id > lokasi.id
+
+// One to one
+Ref: profil_warga.warga_id - warga.id
+
+// Many to many (lewat tabel peserta_kegiatan)
+Ref: peserta_kegiatan.warga_id > warga.id
+Ref: peserta_kegiatan.kegiatan_id > kegiatan.id
